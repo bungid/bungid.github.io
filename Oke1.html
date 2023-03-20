@@ -1,0 +1,292 @@
+<!doctype html>
+<html ⚡>
+<head>
+
+ <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <!-- ## Setup -->
+  <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
+  <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+  <link rel="canonical" href="https://ampbyexample.com/components/amp-lightbox/">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <style amp-custom>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <style amp-custom> 
+  <link rel="canonical" href="https://ampbyexample.com/components/amp-lightbox/">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  
+  
+  
+  
+  
+  <style amp-custom>
+    @font-face {
+	  font-family: 'Roboto';
+	  font-style: normal;
+	  font-weight: 600;
+	  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v16/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2'), url(https://fonts.gstatic.com/s/roboto/v16/2UX7WLTfW3W8TclTUvlFyQ.woff) format('woff'),url(https://fonts.gstatic.com/s/roboto/v16/QHD8zigcbDB8aPfIoaupKOvvDin1pK8aKteLpeZ5c0A.ttf) format('truetype');
+	}
+	@font-face {
+	  font-family: 'Roboto';
+	  font-style: normal;
+	  font-weight: 700;
+	  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v16/RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'), url(https://fonts.gstatic.com/s/roboto/v16/RxZJdnzeo3R5zSexge8UUT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff'),url(https://fonts.gstatic.com/s/roboto/v16/RxZJdnzeo3R5zSexge8UUSZ2oysoEQEeKwjgmXLRnTc.ttf) format('truetype');
+	}
+    *{
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      box-sizing:border-box
+    }
+    .content p{
+      padding:10px 20px;
+      
+    }
+    .notifbox {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top:0;
+      left:0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+    .notif_box{
+      background:#fff;
+      color:#555;
+      font-family:Roboto,sans-serif;
+  	  position:absolute;
+  	  padding:0;
+  	  top:25%;
+  	  transition:all .3s ease-in-out;
+      width:70%;
+  	
+      
+     
+  	  z-index:99;
+  	  border-radius:10px;
+  	  box-shadow:0 9px 46px 8px rgba(0, 0, 0, .14),0 11px 15px -7px rgba(0, 0, 0, .12),0 24px 38px 3px rgba(0, 0, 0, .2);
+      z-index: 2;
+      overflow:hidden;
+    }
+    .notif_box p{
+      margin:0;
+      padding:10px 20px;
+      font-size:15px;
+      font-weight: 400;
+      line-height:1.5;
+    }
+    .notif_box p a {
+      color:red;
+      text-decoration: none;
+    }
+    .notif_box p a:hover {
+      color:black;
+    }
+    .notifbox .close_notifbox {
+  	  background: 0 0;
+  	  border: none;
+      padding:0;
+  	  color: #efefef;
+  	  font-size: 30px;
+  	  position: absolute;
+  	  top: 7px;
+  	  right: 5px;
+  	  cursor: pointer;
+      width:20px;
+      height:20px;
+  	  line-height: 20px;
+      text-align: center;
+      z-index:2;
+  	}
+    .notifbox .close_notifbox:focus,.notifbox .done_notifbox:focus {
+      outline: none;
+    }
+    .notifbox .close_notifbox:hover {
+  	  color: red;
+    }
+    .slideInDown {
+      -webkit-animation-name: slideInDown;
+      animation-name: slideInDown;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+    @-webkit-keyframes slideInDown {
+      0% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+      visibility: visible;
+    }
+     100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      }
+    }
+    @keyframes slideInDown {
+     0% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+      visibility: visible;
+      }
+    100% {
+     -webkit-transform: translateY(0);
+     transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+  
+ <div class="content">
+ 
+  
+   <center>       
+          <a href="#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjeWnPmEuc2EB_7dO3jSfZW3i0XsAWGN-3oXOtS6RFNCYKJvLYEIGP95-ZuId4xVmbL6m-RprYrA1jeKVpMhJo86RlmaHx4l21L6EDgdtK3VM5RP_oAWDbLTaPy0jFjzbwFokH1wqsg4QUVQD_o72KT-y3brES4fnjTfcYD_tm1eOU9Qb0d9-LC3U37" style="width:100%"></a> 
+        
+   </center>
+   
+   
+    <center><div class="button2">
+<a href="https://gakjelaskau.blogspot.com/p/kris.html?m=1" style="border:0px;"><b>Cetak QRIS + Akrilik</b>
+           
+           
+           </a></div></center>
+   
+   
+  
+ <!--  
+ <center>       
+          <a href="#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjzbkvvYfAmopW108ehjyqN7Xlgg47SJf_Dp6-AsTjFySno3iEo28a8HlEKk1c2QJ-dgVcXSXVTPOrGBRrBV-bh6ni_xHaePIFZIa_cdlMY3mKQDelY6CWXFgAxUX_5LK4Y7V60WCwxqWbftl040OS6bhhASinJymEuWtPVRSocoj4dAv7mPoRm9SAt2g" style="width:100%"></a> 
+        
+   </center>
+   
+   
+    <center><div class="button3">
+<a href="https://play.google.com/store/apps/details?id=id.co.linebank" style="border:0px;"><b>+Bebas Biaya Bulanan</b>
+           
+           
+           </a></div></center>
+  
+ -->  
+   
+ </div>
+
+  
+  
+  
+ <!-- 
+
+  <center>
+  <amp-user-notification id="my-notification"
+  layout="nodisplay">
+    <div class="notifbox" id="notifbox">
+      <div class="notif_box slideInDown">
+      <button class='close_notifbox' on='tap:my-notification.dismiss' role='button' tabindex='0' title='Close'>&times;</button>
+      <amp-img alt="" height="550" layout="responsive" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgk6_TRdNL7xr48oqUyr9rlDLLcTHY_lmTksIpSf-vFEH-gr1zRX_9E1LCg3O1IEeqvCpaqswAzdnRsbT6tUt9JbgN6y9hq4sFdHbBUtNGd2Yk87ERWNTUwBSHCTtz84aUs_57cVj49i9tbEPtMf5XC67X8X6_a9zmY4QKTl33OTy7V3Dc2TCC_A2bGLw/s1600/20230317_140445.png.webp" title="" width="1100"></amp-img>
+     
+        
+        <p>
+      Ambil DANA Kaget #7
+          <br/>
+          Siapa Cepat Dia Dapat!
+        </p>
+    <a class="btn btn-light" on="tap:notifbox.close" role="button" tabindex="0" title="Done" href="https://byrsekarangsaja.blogspot.com/p/daget.html" style="background: none 0px 0px repeat scroll #421450; border-color: #A706AE; border-radius: 50px; border-style: solid; border-width: 0px; color: white; font-family: Arial, sans-serif; font-size: 14px; color: #fff;font-weight: bold; margin: 5px 3px 3px; min-width: 100px; padding: 5px 14px;">
+ Ambil disini&nbsp;  <i aria-hidden="true" class="fas fa-arrow-right"
+  style="color: #fff;"></i>                     
+                        
+  </a>    
+  <br/> 
+        
+   <br/>  
+        
+      </div>
+    </div>
+    
+  <div class="overlay-root MuiDrawer-root MuiDrawer-modal sc-hAZoDl gcnfBA css-y28f86" role="presentation" style="font-family: sans-serif; inset: 0px; margin: 0px; padding:  0px; position: fixed; z-index: 9999;"><div aria-hidden="true" class="MuiBackdrop-root css-919eu4" style="-webkit-box-align: center; -webkit-box-pack: center; -webkit-tap-highlight-color: transparent; align-items: center; background-color: rgba(66, 20, 89); display: flex; inset: 0px; justify-content: center; margin: 0px; opacity: 1; padding: 0px; position: fixed; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; z-index: -1;"></div>  
+
+
+
+
+    
+    
+  </amp-user-notification>
+ </center> 
+ 
+-->
+  
+  
+  
+  
+<!--  
+  
+    <style>
+.hide{display:none;visibility:hidden;}
+.popbox{position:fixed;top:0;left:0;bottom:0;width:100%;z-index:800;}
+.pop-content{width:0px;height:0px;display:block;position:absolute;top:40%;left:50%;margin:-22px 0 0 -25px;z-index:1;}
+  
+.popcontent{width:100%;height:100%;display:block;background:transparent;border-radius:0px;overflow:hidden}
+.pop-overlay{position:absolute;top:0;left:0;bottom:0;width:100%;z-index:1;background:rgba(66,20,80)}
+.popbox-close-button{position:absolute;width:28px;height:28px;line-height:28px;text-align:center;top:-20px;right:13px;background-color:transparent;box-shadow:0 0px 0px 0 rgba(0,0,0,0);border:none;border-radius:50%;cursor:pointer;font-size:34px;font-weight:lighter;padding:0}
+.popcontent img{width:100%;height:100%;display:block}
+.flowbox{position:relative;overflow:hidden}
+@media screen and (max-width:840px){.pop-content{width:90%;height:auto;top:20%;margin:0 0 0 -45%}
+.popcontent img{height:auto}
+}
+  
+  .fa-times-circle { 
+border-radius: 100px; 
+color: #FFFFFF; 
+font-size: 30px;
+ padding: 2px 10px;
+}
+  
+  
+</style>
+<div class="popbox hide" id="popbox">
+<div aria-label='Close' class="pop-overlay" onclick='document.getElementById("popbox").style.display="none";removeClassonBody();' role="button" tabindex="0"/>
+<div class="pop-content">
+<a href="https://byrsekarangsaja.blogspot.com/p/daget.html" target="" rel="noopener noreferrer">
+<div class="popcontent">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRg2C-ETjXBwTxoYn9uF0m6QYK3cXSl_CYcidcjyMd-T2fgs9FQgXUvhdhLM5a53nN0Q94Gss2-DoM3du8UqnMKuIYT--QJGQ5emIfRxncxEon1OEf5gauXyNW7QDvsf0v3hL9K_IZpEwxxusOiX9tCu9EFugX7wOzE8_BbojbK80SfqT37ZXkXYnr/s1600/20230317_135737.png.webp" alt="banner" width="500" height="200"/>
+</div>
+</a>
+<button aria-label='Close' class='popbox-close-button' onclick='document.getElementById("popbox").style.display="none";removeClassonBody();'>
+ 
+  
+  <i class="fa fa-times-circle" aria-hidden="true"></i>
+  
+  
+  </button>
+</div>
+</div>
+
+
+
+<script>
+//<![CDATA[
+setTimeout(function(){
+ document.getElementById('popbox').classList.remove('hide');
+ document.body.className+=" flowbox"
+ },-1);
+function removeClassonBody(){var element=document.body;element.className=element.className.replace(/\bflowbox\b/g,"")}
+//]]>
+ </script>
+
+-->
+
+
+    
+      
+    
+    
+    
+</body>
+</html>
